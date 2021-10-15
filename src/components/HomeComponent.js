@@ -30,4 +30,7 @@ function RenderCard({item}) {
         </Card>
     );
 }
+
+
+
 export default Home;
