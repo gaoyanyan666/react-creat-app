@@ -6,15 +6,13 @@ import Header from './HeaderComponent';
 import Footer from './FooterComponent';
 import Home from './HomeComponent';
 import About from './AboutComponent'
-import { actions } from 'react-redux-form';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import {connect} from 'react-redux';
 import {addComment,fetchCampsites} from '../redux/ActionCreators';
 
 const mapDispatchToProps ={
     addComment:(campsiteId,rating,author,text)=>(addComment(campsiteId,rating,author,text)),
-    fetchCampsites: () => (fetchCampsites()),
-    resetFeedbackForm: () => (actions.reset('feedbackForm'))
+    fetchCampsites:()=>(fetchCampsites())
 };
 
 
@@ -65,9 +63,9 @@ class Main extends Component {
             <Switch >
             <Route path = '/home' component = { HomePage }/> 
             <Route exact path = '/directory' render = {() => < Directory campsites = { this.props.campsites }/>} />
-            <Route path ='/directory/:campsiteId' component = {CampsiteWithId} />  
-            <Route exact path='/contactus' render={() => <Contact resetFeedbackForm={this.props.resetFeedbackForm} />} />
             <Route path ='/aboutus' render={()=><About partners ={this.props.partners}/>}/>
+            <Route path ='/directory/:campsiteId' component = {CampsiteWithId} />  
+            <Route exact path='/contactus' component={Contact} />
             <Redirect to = '/home' />
             </Switch> 
             <Footer />
